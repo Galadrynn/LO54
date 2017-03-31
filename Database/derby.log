@@ -1,0 +1,33 @@
+Fri Mar 31 17:57:19 CEST 2017 : Apache Derby Network Server - 10.10.1.3 - (1557168) démarré et prêt à accepter les connexions sur le port 1527
+----------------------------------------------------------------
+Fri Mar 31 17:57:20 CEST 2017:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168) : instance a816c00e-015b-2515-d421-000027fa35a5 
+dans le répertoire de base de données C:\LO54-GIT\LO54\Database\SCHOOL avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1d44bcfa
+Chargé de file:/C:/LO54/App/jdk/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b18
+user.dir=C:\LO54\App\jdk\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\LO54-GIT\LO54\Database
+Chargeur de classe de la base de données démarré - derby.database.classpath = ''
+----------------------------------------------------------------
+Fri Mar 31 17:57:30 CEST 2017:
+Fermeture de l'instance a816c00e-015b-2515-d421-000027fa35a5 sur le répertoire de base de données C:\LO54-GIT\LO54\Database\SCHOOL avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Fri Mar 31 17:57:30 CEST 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = SCHOOL), (DRDAID = {2}), Arrêt de la base de données 'SCHOOL'.
+----------------------------------------------------------------
+Fri Mar 31 17:57:42 CEST 2017:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168) : instance 560740aa-015b-2515-d421-000027fa35a5 
+dans le répertoire de base de données C:\LO54-GIT\LO54\Database\SCHOOL avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1d44bcfa
+Chargé de file:/C:/LO54/App/jdk/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_25-b18
+user.dir=C:\LO54\App\jdk\db
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\LO54-GIT\LO54\Database
+Chargeur de classe de la base de données démarré - derby.database.classpath = ''
+----------------------------------------------------------------
+Fri Mar 31 18:12:15 CEST 2017 : fermeture du moteur Derby
