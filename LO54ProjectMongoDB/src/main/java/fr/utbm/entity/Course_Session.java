@@ -6,12 +6,21 @@
 package fr.utbm.entity;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Aloïs
  */
+
+@Entity
 public class Course_Session {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String courseCode;
     private Integer locationId;

@@ -17,6 +17,9 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="fr.utbm.entity.Client"/>
+        <mapping class="fr.utbm.entity.Course"/>
+        <mapping class="fr.utbm.entity.Course_Session"/>
+        <mapping class="fr.utbm.entity.Location"/>
         
         
     </session-factory>
