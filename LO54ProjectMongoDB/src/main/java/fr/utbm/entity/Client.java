@@ -5,12 +5,25 @@
  */
 package fr.utbm.entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Aloïs
  */
-public class Client {
+@Entity
+public class Client implements Serializable {
+    
+    private static final long serialVersionUID = 12323123455123L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     private Integer courseSessionId;
     private String lastName;
     private String firstName;
