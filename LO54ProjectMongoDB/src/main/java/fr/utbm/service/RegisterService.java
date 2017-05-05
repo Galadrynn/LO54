@@ -5,10 +5,23 @@
  */
 package fr.utbm.service;
 
+import fr.utbm.entity.Client;
+import fr.utbm.entity.Course_Session;
+import fr.utbm.repository.ClientDao;
+
 /**
  *
  * @author Aloïs
  */
 public class RegisterService {
     
+    private ClientDao clDao = new ClientDao();
+    
+    public void registerClientToCourse(Integer courseSessionId, String name, String surname, String adress, Integer phone, String email)
+    {
+        Client cl = new Client (courseSessionId, name, surname, adress, phone, email);
+        clDao.registerClientToCourseInDatabase(cl);
+        
+        
+    }
 }

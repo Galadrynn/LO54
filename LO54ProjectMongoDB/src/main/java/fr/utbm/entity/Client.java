@@ -7,9 +7,12 @@ package fr.utbm.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,7 +25,10 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    //@ManyToOne(fetch=FetchType.LAZY)
+    //@JoinColumn(name = "courseCode")
     private Integer courseSessionId;
+    
     private String lastName;
     private String firstName;
     private String address;
@@ -32,6 +38,15 @@ public class Client implements Serializable {
     public Client() {
     }
 
+    public Client(Integer course, String lastName, String firstName, String address, Integer phone, String email) {
+        this.courseSessionId = course;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
+    
     public Integer getId() {
         return id;
     }

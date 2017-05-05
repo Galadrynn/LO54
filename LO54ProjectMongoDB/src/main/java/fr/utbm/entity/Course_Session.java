@@ -6,10 +6,15 @@
 package fr.utbm.entity;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -19,14 +24,27 @@ import javax.persistence.Id;
 @Entity
 public class Course_Session {
     
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String courseCode;
-    private Integer locationId;
-    private Date startDate;
-    private Date endDate;
 
+
+    @Column
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy="courseSessionId")    
+    private String courseCode;
+    
+    @Column
+    private Integer locationId;
+    
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    
+    @Column
+    @Temporal(TemporalType.DATE)    
+    private Date endDate;
+    
     public Course_Session() {
     }
 
@@ -69,5 +87,11 @@ public class Course_Session {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return "Course_Session{" + "id=" + id + ", courseCode=" + courseCode + ", locationId=" + locationId + ", startDate=" + startDate + ", endDate=" + endDate + '}';
+    }
+    
     
 }
