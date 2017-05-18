@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Moi
  */
+
+@WebServlet(name="home", urlPatterns = "/home")
 public class ServletHome extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

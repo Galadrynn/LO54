@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Moi
  */
+
+@WebServlet( name="description", urlPatterns = "/description" )
 public class ServletDescrption extends HttpServlet {
     
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
