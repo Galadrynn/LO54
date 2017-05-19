@@ -17,7 +17,7 @@ public class RegisterService {
     
     private ClientDao clDao = new ClientDao();
     
-    public void registerClientToCourse(Integer courseSessionId, String name, String surname, String adress, Integer phone, String email)
+    public void registerClientToCourse(Course_Session courseSessionId, String name, String surname, String adress, Integer phone, String email)
     {
         Client cl = new Client (courseSessionId, name, surname, adress, phone, email);
         clDao.registerClientToCourseInDatabase(cl);

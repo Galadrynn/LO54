@@ -29,12 +29,13 @@ public class MainApp {
        // RegisterService regSer = new RegisterService();
        // regSer.registerClientToCourse(1, "A", "PATOIS", "46 avenue Joffre - Audincourt", 5124684, "je@utbm.fr");
         
-        ListCoursesService liCoSer = new ListCoursesService();
+        /*ListCoursesService liCoSer = new ListCoursesService();
         List l = liCoSer.getAllCourseSessions();
-        System.out.println(l.get(0).toString());
+        System.out.println(l.get(0).toString());*/
             
             
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
         
         /*
         session.beginTransaction();

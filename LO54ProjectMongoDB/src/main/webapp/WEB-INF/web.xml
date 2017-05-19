@@ -6,7 +6,7 @@
 	 version="3.1">
     
     
-    
+    <!--
     <servlet>
         <servlet-name>servletHome</servlet-name>
         <servlet-class>fr.utbm.servlet.ServletHome</servlet-class>
@@ -27,6 +27,7 @@
         <url-pattern>/description</url-pattern>
     </servlet-mapping>
     
+    -->
     
     
     <session-config>
