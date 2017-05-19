@@ -31,9 +31,9 @@ public class ServletJsp extends HttpServlet {
         /*map.put("test","test");
         map.put("oui","oui");*/
         
-        map.put("course_sessions", toto.toString());
+        //map.put("course_sessions", toto);
         
-        request.setAttribute("course_sessions", map);
+        request.setAttribute("course_sessions", toto);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/home.jsp" ).forward( request, response );
     }
 
