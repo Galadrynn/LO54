@@ -6,8 +6,11 @@
 package fr.utbm.servlet;
 
 
+import fr.utbm.entity.Course_Session;
+import fr.utbm.repository.CourseSessionDao;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +24,16 @@ public class ServletJsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("test","test");
-        map.put("oui","oui");
+        CourseSessionDao test = new CourseSessionDao();
+        List<Course_Session> toto = test.getAllCourseSessionsFromDb();
         
-        request.setAttribute("paramlist", map);
+        Map<String, String> map = new HashMap<String, String>();
+        /*map.put("test","test");
+        map.put("oui","oui");*/
+        
+        map.put("course_sessions", toto.toString());
+        
+        request.setAttribute("course_sessions", map);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/home.jsp" ).forward( request, response );
     }
 

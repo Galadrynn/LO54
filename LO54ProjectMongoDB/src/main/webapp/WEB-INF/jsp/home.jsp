@@ -13,7 +13,10 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <%=3*2%>
-        <
+       
+        <%
+            request.getAttribute("course_sessions");
+    
+        %>
     </body>
 </html>
