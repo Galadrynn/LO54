@@ -6,6 +6,7 @@
 package fr.utbm.entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,16 +23,27 @@ public class Client implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
     
     @ManyToOne
     @JoinColumn(name="coursesessionid")
+    @Column
     private Course_Session courseSessionId;
     
+    @Column
     private String lastName;
+    
+    @Column
     private String firstName;
+    
+    @Column
     private String address;
+    
+    @Column
     private Integer phone;
+    
+    @Column
     private String email;
 
     public Client() {

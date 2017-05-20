@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,14 +31,17 @@ public class Course_Session implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
 
-
     @Column
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy="courseSessionId")    
+    @ManyToOne
+    @JoinColumn(name="coursecode")
     private String courseCode;
     
     @Column
+    @ManyToOne
+    @JoinColumn(name="locationid")
     private Integer locationId;
     
     @Column
@@ -49,7 +53,6 @@ public class Course_Session implements Serializable{
     private Date endDate;
     
     @OneToMany
-    //@JoinColumn(name="id")
     private List<Client> clients;
     
     public Course_Session() {
