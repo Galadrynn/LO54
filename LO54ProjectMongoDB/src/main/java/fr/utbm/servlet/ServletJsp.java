@@ -6,7 +6,9 @@
 package fr.utbm.servlet;
 
 
+import fr.utbm.entity.Course;
 import fr.utbm.entity.Course_Session;
+import fr.utbm.repository.CourseDao;
 import fr.utbm.repository.CourseSessionDao;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,8 +26,11 @@ public class ServletJsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        CourseSessionDao test = new CourseSessionDao();
-        List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        //CourseSessionDao test = new CourseSessionDao();
+        //List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        
+        CourseDao test = new CourseDao();
+        List<Course> toto = test.getAllCourseFromDb();
         
         Map<String, String> map = new HashMap<String, String>();
         /*map.put("test","test");
