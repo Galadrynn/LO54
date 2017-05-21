@@ -7,7 +7,7 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
         <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
-        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/COURSE</property>
+        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/SCHOOL</property>
         <property name="hibernate.connection.username">prof</property>
         <property name="hibernate.connection.password">prof</property>
         <property name="current_session_context_class">thread</property>

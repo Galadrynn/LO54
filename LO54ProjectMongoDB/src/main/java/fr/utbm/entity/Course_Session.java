@@ -31,18 +31,15 @@ public class Course_Session implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
-    @Column
     @ManyToOne
     @JoinColumn(name="coursecode")
-    private String courseCode;
+    private Course courseCode;
     
-    @Column
     @ManyToOne
     @JoinColumn(name="locationid")
-    private Integer locationId;
+    private Location locationId;
     
     @Column
     @Temporal(TemporalType.DATE)
@@ -66,19 +63,19 @@ public class Course_Session implements Serializable{
         this.id = id;
     }
 
-    public String getCourseCode() {
+    public Course getCourseCode() {
         return courseCode;
     }
 
-    public void setCourseCode(String courseCode) {
+    public void setCourseCode(Course courseCode) {
         this.courseCode = courseCode;
     }
 
-    public Integer getLocationId() {
+    public Location getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(Integer locationId) {
+    public void setLocationId(Location locationId) {
         this.locationId = locationId;
     }
 

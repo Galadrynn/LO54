@@ -23,7 +23,6 @@ public class Location {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
     
     @Column
