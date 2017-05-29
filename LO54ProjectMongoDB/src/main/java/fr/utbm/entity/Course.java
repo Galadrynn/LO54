@@ -5,6 +5,7 @@
  */
 package fr.utbm.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +20,9 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
-public class Course {
+public class Course implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    @Column
     private String code;
     
     @Column
@@ -50,12 +47,4 @@ public class Course {
         this.title = title;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
 }

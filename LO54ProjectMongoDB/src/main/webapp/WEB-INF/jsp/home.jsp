@@ -85,8 +85,10 @@
         <%
 
                int a = 1;
-               List<Course> list = (List) request.getAttribute("course_sessions");
-               for (Course c : list)
+               List<Course_Session> list = (List) request.getAttribute("course_sessions");
+               for (Course_Session c : list)
+               //List<Course_Session> list = (List) request.getAttribute("course_sessions");
+               //for (Course_Session c : list)
                 {
         %>
             <tr>
@@ -94,10 +96,10 @@
                     <%= a%>
                 </td>
                 <td>
-                    <%= c.getCode()%>
+                    <%= c.getId()%>
                 </td>
                 <td>
-                    <%= c.getTitle()%>
+                    <%= c.getCourseCode().getCode() %>
                 </td>
             </tr>   
         <%

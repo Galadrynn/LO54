@@ -26,12 +26,19 @@ public class ServletJsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        CourseSessionDao test = new CourseSessionDao();
+        List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        
         //CourseSessionDao test = new CourseSessionDao();
-        //List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        //List<Course_Session> toto = test.getCourseSessionsFilterBy("Java EE");
+        //System.out.println("efeaf " + toto.get(0).getCourseCode());
         
-        CourseDao test = new CourseDao();
+    
+       
+        /*CourseDao test = new CourseDao();
         List<Course> toto = test.getAllCourseFromDb();
-        
+        System.out.println("efeaf " + toto.size());*/
+       
         Map<String, String> map = new HashMap<String, String>();
         /*map.put("test","test");
         map.put("oui","oui");*/
