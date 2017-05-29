@@ -23,6 +23,7 @@ public class Client implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
     
     @ManyToOne

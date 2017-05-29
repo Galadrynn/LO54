@@ -30,9 +30,6 @@ public class Course {
     
     @Column
     private String title;
-
-    @OneToMany
-    private List<Course_Session> course_sessions;
         
     public Course() {
     }

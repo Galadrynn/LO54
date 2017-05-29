@@ -31,6 +31,7 @@ public class Course_Session implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
 
     @ManyToOne
@@ -48,9 +49,6 @@ public class Course_Session implements Serializable{
     @Column
     @Temporal(TemporalType.DATE)    
     private Date endDate;
-    
-    @OneToMany
-    private List<Client> clients;
     
     public Course_Session() {
     }

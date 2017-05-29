@@ -27,9 +27,6 @@ public class Location {
     
     @Column
     private String city;
-
-    @OneToMany
-    private List<Course_Session> course_sessions;
         
     public Location() {
     }
