@@ -14,6 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -67,7 +69,7 @@
       
    
       <div class="page-header">
-          <h1>Liste des cours :</h1>
+          <h1>Liste des cours sessions:</h1>
       </div>
       
               <div class="col-md-24">
@@ -75,8 +77,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Code</th>
+                <th>Name</th>
                 <th>Titre</th>
+                 <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -101,6 +104,9 @@
                 <td>
                     <%= c.getCourseCode().getCode() %>
                 </td>
+                <td>
+                    <%= c.getEndDate() %>
+                </td>
             </tr>   
         <%
             a++;
@@ -115,14 +121,51 @@
         </div>
       
       
-      
+      <form methode='POST' id='actu'>
+           <input type='text' id='val'/>
+      </form>
+        
+        
+       <script type="text/javascript">
+           
+            $("#actu").submit(function(event) { event.preventDefault();});
+            
+            //$("#actu").submit(function(event) {
+             $('#val').on('input',function(e){
+                
+                var val = $('#val').val();
+                console.log(val);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "toto",
+                    data: {val: val},
+                    dataType:'JSON',
+                    //dataType: "html",
+                    success: function(res){
+                        //alert('suceess');
+                        $('tbody').empty();
+                        if(res.val !=0 ){
+                            for(var i=0; i<res.val.length; i++){
+                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>c</td><td>d</td></tr>");
+                            }
+                        }
+                        console.log(res);
+                    },
+                    error: function (data) {
+                        alert('fail');
+                    }
+               });  
+            });
+   
+           
+       </script>    
     
         
     </div>
         
     </body>
     <fooer>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     </footer>
 </html>

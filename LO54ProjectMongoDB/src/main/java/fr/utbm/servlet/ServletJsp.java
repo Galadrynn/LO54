@@ -29,11 +29,9 @@ public class ServletJsp extends HttpServlet {
         CourseSessionDao test = new CourseSessionDao();
         List<Course_Session> toto = test.getAllCourseSessionsFromDb();
         
-        //CourseSessionDao test = new CourseSessionDao();
-        //List<Course_Session> toto = test.getCourseSessionsFilterBy("Java EE");
-        //System.out.println("efeaf " + toto.get(0).getCourseCode());
-        
-    
+        /*CourseSessionDao test = new CourseSessionDao();
+        List<Course_Session> toto = test.getCourseSessionsFilterBy("LO54");*/
+       
        
         /*CourseDao test = new CourseDao();
         List<Course> toto = test.getAllCourseFromDb();
