@@ -105,7 +105,7 @@ public class CourseSessionDao {
 
         session = HibernateUtil.getSessionFactory().openSession();
         try {
-            Query query = session.createQuery("from Course_Session cse where cse.courseCode LIKE :code").setString("code", s);
+            Query query = session.createQuery("from Course_Session cse where cse.courseCode LIKE :code").setString("code", '%'+s+'%');
             courseSessionList = query.list();
         }
         catch (HibernateException he) {

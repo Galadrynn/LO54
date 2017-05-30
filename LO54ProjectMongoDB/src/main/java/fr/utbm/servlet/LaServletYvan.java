@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package fr.utbm.servlet;
-
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import java.io.IOException;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Moi
  */
-@WebServlet(name = "servlettoto", urlPatterns = {"/toto"})
-public class LaServletAlolo extends HttpServlet {
+@WebServlet(name = "servlettata", urlPatterns = {"/tata"})
+public class LaServletYvan extends HttpServlet {
     
     
         @Override
@@ -44,10 +43,8 @@ public class LaServletAlolo extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
-            String val = request.getParameter("val");
-            
             CourseSessionDao test = new CourseSessionDao();
-            List<Course_Session> toto = test.getCourseSessionsFilterBy(val);
+            List<Course_Session> toto = test.getAllCourseSessionsFromDb();
             
            response.setContentType("application/json");
            String actu = "[";

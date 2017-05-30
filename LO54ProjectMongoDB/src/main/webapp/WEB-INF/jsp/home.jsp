@@ -6,6 +6,7 @@
 
 <%@page import="fr.utbm.entity.Course"%>
 <%@page import="fr.utbm.entity.Course_Session"%>
+<%@page import="fr.utbm.entity.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -79,7 +80,9 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Titre</th>
-                 <th>Date</th>
+                 <th>Date début</th>
+                 <th>Date fin</th>
+                 <th>Lieu</th>
               </tr>
             </thead>
             <tbody>
@@ -99,13 +102,19 @@
                     <%= a%>
                 </td>
                 <td>
-                    <%= c.getId()%>
+                    <%= c.getCourseCode().getCode()%>
                 </td>
                 <td>
-                    <%= c.getCourseCode().getCode() %>
+                    <%= c.getCourseCode().getTitle()%>
+                </td>
+                <td>
+                    <%= c.getStartDate()%>
                 </td>
                 <td>
                     <%= c.getEndDate() %>
+                </td>
+                <td>
+                    <%= c.getLocationId().getCity()%>
                 </td>
             </tr>   
         <%
@@ -122,7 +131,8 @@
       
       
       <form methode='POST' id='actu'>
-           <input type='text' id='val'/>
+          <label>Recherche sur le Code : <input type='text' id='val' /></label><br>
+          <label>Recherche sur la Description : <input type='text' id='val2'/></label>
       </form>
         
         
@@ -134,7 +144,25 @@
              $('#val').on('input',function(e){
                 
                 var val = $('#val').val();
-                console.log(val);
+                if (val == ""){
+                    $.ajax({
+                        type: "POST",
+                        url: "tata",
+                        dataType:'JSON',
+                        success: function(res){
+                            //alert('suceess');
+                            $('tbody').empty();
+                            if(res.val !=0 ){
+                                for(var i=0; i<res.val.length; i++){
+                                    $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>c</td><td>d</td><td>d</td><td>d</td></tr>");
+                                }
+                            }
+                        },
+                        error: function (data) {
+                            alert('fail');
+                        }
+                   }); 
+                }
                 
                 $.ajax({
                     type: "POST",
@@ -147,10 +175,9 @@
                         $('tbody').empty();
                         if(res.val !=0 ){
                             for(var i=0; i<res.val.length; i++){
-                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>c</td><td>d</td></tr>");
+                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>c</td><td>d</td><td>d</td><td>d</td></tr>");
                             }
                         }
-                        console.log(res);
                     },
                     error: function (data) {
                         alert('fail');
