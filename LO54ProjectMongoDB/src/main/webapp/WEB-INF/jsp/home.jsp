@@ -132,7 +132,8 @@
       
       <form methode='POST' id='actu'>
           <label>Recherche sur le Code : <input type='text' id='val' /></label><br>
-          <label>Recherche sur la Description : <input type='text' id='val2'/></label>
+          <label>Recherche sur la Description : <input type='text' id='val2'/></label><br>
+          <label>Recherche sur la Date : <input type='text' id='val3'/></label>
       </form>
         
         
@@ -144,30 +145,13 @@
              $('#val').on('input',function(e){
                 
                 var val = $('#val').val();
-                if (val == ""){
-                    $.ajax({
-                        type: "POST",
-                        url: "tata",
-                        dataType:'JSON',
-                        success: function(res){
-                            //alert('suceess');
-                            $('tbody').empty();
-                            if(res.val !=0 ){
-                                for(var i=0; i<res.val.length; i++){
-                                    $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>c</td><td>d</td><td>d</td><td>d</td></tr>");
-                                }
-                            }
-                        },
-                        error: function (data) {
-                            alert('fail');
-                        }
-                   }); 
-                }
+                var date = $('#date').val();
+                var loc = $('#loc').val();
                 
                 $.ajax({
                     type: "POST",
-                    url: "toto",
-                    data: {val: val},
+                    url: "filterCoursesResults",
+                    data: {val: val, date: date, loc: loc},
                     dataType:'JSON',
                     //dataType: "html",
                     success: function(res){

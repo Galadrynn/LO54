@@ -99,7 +99,33 @@ public class CourseSessionDao {
     }
     
     // - filtrer la liste des formations par un mot clé contenu dans le titre de la formation.
-    public List<Course_Session> getCourseSessionsFilterBy(String s) {
+    public List<Course_Session> getCourseSessionsFilterByText(String s) {
+        
+        List<Course_Session> courseSessionList = null;
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Query query = session.createQuery("from Course_Session cse where cse.courseCode LIKE :code").setString("code", '%'+s+'%'); // to fix
+            courseSessionList = query.list();
+        }
+        catch (HibernateException he) {
+            he.printStackTrace();
+        }
+        finally {
+            if (session != null)
+                try {
+                    session.close();
+                }
+                catch (HibernateException he) {
+                    he.printStackTrace();
+                }
+        }
+        
+        return courseSessionList;
+    }
+    
+    // - filtrer la liste des formations par un mot clé contenu dans le code de l'UV (non demandé)
+    public List<Course_Session> getCourseSessionsFilterByCode(String s) {
         
         List<Course_Session> courseSessionList = null;
 
