@@ -9,10 +9,14 @@ import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +57,7 @@ public class ServletFilterCoursesResults extends HttpServlet {
             
             // Cast to Date & Int
             Integer locId = Integer.parseInt(loc);       
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date date = null;
             try {
                 if(!datereq.equals("")) {
@@ -63,7 +67,7 @@ public class ServletFilterCoursesResults extends HttpServlet {
             catch (ParseException e) {
 			e.printStackTrace();
             }
-            
+
             CourseSessionDao courseSessionDao = new CourseSessionDao();
             List<Course_Session> listCourses = courseSessionDao.getCourseSessionsFilter(date, locId, desc);
             
@@ -95,17 +99,5 @@ public class ServletFilterCoursesResults extends HttpServlet {
                  out.println("{\"val\":"+actu+"}");
             }
         }
-
-    /*private int getLocationIdFromName(String locationName) {
-        
-        if (locationName.equals("BELFORT"))
-            return 1;
-        if (locationName.equals("SEVENANS"))
-            return 2;
-        if (locationName.equals("MONTBELIARD"))
-            return 3;
-        // or a sql request that does the same
-        return 0;
-    }*/
     
 }
