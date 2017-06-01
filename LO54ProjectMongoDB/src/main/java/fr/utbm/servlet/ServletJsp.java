@@ -6,10 +6,10 @@
 package fr.utbm.servlet;
 
 
-import fr.utbm.entity.Course;
+import fr.utbm.entity.Location;
 import fr.utbm.entity.Course_Session;
-import fr.utbm.repository.CourseDao;
 import fr.utbm.repository.CourseSessionDao;
+import fr.utbm.repository.LocationDao;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +29,9 @@ public class ServletJsp extends HttpServlet {
         CourseSessionDao test = new CourseSessionDao();
         List<Course_Session> toto = test.getAllCourseSessionsFromDb();
         
+        LocationDao test2 = new LocationDao();
+        List<Location> toto2 = test2.getAllLocation();
+        
         /*CourseSessionDao test = new CourseSessionDao();
         List<Course_Session> toto = test.getCourseSessionsFilterBy("LO54");*/
        
@@ -44,6 +47,7 @@ public class ServletJsp extends HttpServlet {
         //map.put("course_sessions", toto);
         
         request.setAttribute("course_sessions", toto);
+        request.setAttribute("locations", toto2);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/home.jsp" ).forward( request, response );
     }
 

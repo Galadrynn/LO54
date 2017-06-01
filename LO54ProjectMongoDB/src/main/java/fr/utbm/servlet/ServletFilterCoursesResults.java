@@ -9,6 +9,8 @@ import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -35,7 +37,6 @@ public class ServletFilterCoursesResults extends HttpServlet {
                 out.println("<title>List Sessions courses</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>List Sessions courses</h1>");
                 out.println("</body>");
                 out.println("</html>");
             }
@@ -45,63 +46,45 @@ public class ServletFilterCoursesResults extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
-            String val = request.getParameter("val");
-            Date date = null;// = SimpleDateFormat.parse(request.getParameter("date"));
-            String locationName = request.getParameter("loc");
+            // Get params from request
+            String desc = request.getParameter("desc");
+            String datereq = request.getParameter("date");
+            String loc = request.getParameter("loc");
             
-            boolean noFilterOnLocation = false;
-            boolean noFilterOnDate = false;
-            
-            int loc = getLocationIdFromName(locationName);
-            
-            if (loc == 0)
-               noFilterOnLocation = true;
-            
-            if (date == null)
-                noFilterOnDate = true;
-            
-            CourseSessionDao courseSessionDao = new CourseSessionDao();
-            List<Course_Session> listCourses = courseSessionDao.getCourseSessionsFilterByText(val);
-            List<Course_Session> listCoursesFilterDate = courseSessionDao.getCourseSessionsFilterByDate(date);
-            List<Course_Session> listCoursesFilterLoc = courseSessionDao.getCourseSessionsFilterByLocation(loc);
-            
-            boolean toRemoveDate = true;
-            boolean toRemoveLoc = true;
-            
-            for (Course_Session c : listCourses)
-            {
-                toRemoveDate = true;
-                toRemoveLoc = true;
-                
-                if (!noFilterOnDate)
-                    for (Course_Session c2 : listCoursesFilterDate)
-                        if (c2.getId().intValue() == c.getId().intValue())
-                            toRemoveDate = false;
-                
-                if (!noFilterOnLocation)
-                    for (Course_Session c3 : listCoursesFilterLoc)
-                        if (c3.getId().intValue() == c.getId().intValue())
-                            toRemoveLoc = false;
-                
-                // must check if can be removed within the foreach.
-                // If not, do a list of Course_Session to remove afterwards
-                
-                if (!noFilterOnDate && toRemoveDate)
-                    listCourses.remove(c);
-                
-                if (!noFilterOnLocation && toRemoveLoc)
-                    listCourses.remove(c);
+            // Cast to Date & Int
+            Integer locId = Integer.parseInt(loc);       
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            try {
+                if(!datereq.equals("")) {
+                    date = formatter.parse(datereq);
+                }
+            }
+            catch (ParseException e) {
+			e.printStackTrace();
             }
             
+            CourseSessionDao courseSessionDao = new CourseSessionDao();
+            List<Course_Session> listCourses = courseSessionDao.getCourseSessionsFilter(date, locId, desc);
+            
+            // response JSON
             response.setContentType("application/json");
             String actu = "[";
            
             try (PrintWriter out = response.getWriter()) {
                 for(Course_Session c : listCourses){
                     actu += "{";
-                    actu += "\"Code\":"+"\""+c.getCourseCode().getTitle()+"\"";
+                    actu += "\"Desc\":"+"\""+c.getCourseCode().getTitle()+"\"";
+                    actu += ",";
+                    actu += "\"Code\":"+"\""+c.getCourseCode().getCode()+"\"";
                     actu += ",";
                     actu += "\"Id\":"+"\""+c.getId()+"\"";
+                    actu += ",";
+                    actu += "\"Location\":"+"\""+c.getLocationId().getCity()+"\"";
+                    actu += ",";
+                    actu += "\"StartDate\":"+"\""+c.getStartDate()+"\"";
+                    actu += ",";
+                    actu += "\"EndDate\":"+"\""+c.getEndDate()+"\"";
                     actu += "},";
                 }
                  if(actu.equals("[")) actu="0";
@@ -113,7 +96,7 @@ public class ServletFilterCoursesResults extends HttpServlet {
             }
         }
 
-    private int getLocationIdFromName(String locationName) {
+    /*private int getLocationIdFromName(String locationName) {
         
         if (locationName.equals("BELFORT"))
             return 1;
@@ -123,6 +106,6 @@ public class ServletFilterCoursesResults extends HttpServlet {
             return 3;
         // or a sql request that does the same
         return 0;
-    }
+    }*/
     
 }
