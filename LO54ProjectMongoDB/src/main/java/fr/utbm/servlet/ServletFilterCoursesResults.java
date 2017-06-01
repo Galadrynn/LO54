@@ -56,7 +56,10 @@ public class ServletFilterCoursesResults extends HttpServlet {
             String loc = request.getParameter("loc");
             
             // Cast to Date & Int
-            Integer locId = Integer.parseInt(loc);       
+            Integer locId = null;
+            if(!loc.equals("null")) {
+                locId = Integer.parseInt(loc);
+            }
             DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             Date date = null;
             try {
@@ -73,10 +76,17 @@ public class ServletFilterCoursesResults extends HttpServlet {
             
             // response JSON
             response.setContentType("application/json");
+            String dateSart = "";
+            String dateEnd = "";
+            
             String actu = "[";
            
             try (PrintWriter out = response.getWriter()) {
                 for(Course_Session c : listCourses){
+                    
+                    dateSart = formatter.format(c.getStartDate());
+                    dateEnd = formatter.format(c.getEndDate());
+                    
                     actu += "{";
                     actu += "\"Desc\":"+"\""+c.getCourseCode().getTitle()+"\"";
                     actu += ",";
@@ -86,9 +96,9 @@ public class ServletFilterCoursesResults extends HttpServlet {
                     actu += ",";
                     actu += "\"Location\":"+"\""+c.getLocationId().getCity()+"\"";
                     actu += ",";
-                    actu += "\"StartDate\":"+"\""+c.getStartDate()+"\"";
+                    actu += "\"StartDate\":"+"\""+dateSart+"\"";
                     actu += ",";
-                    actu += "\"EndDate\":"+"\""+c.getEndDate()+"\"";
+                    actu += "\"EndDate\":"+"\""+dateEnd+"\"";
                     actu += "},";
                 }
                  if(actu.equals("[")) actu="0";

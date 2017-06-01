@@ -4,6 +4,7 @@
     Author     : Moi
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fr.utbm.entity.Course"%>
 <%@page import="fr.utbm.entity.Course_Session"%>
 <%@page import="fr.utbm.entity.Location"%>
@@ -79,6 +80,7 @@
                 
                 
         <%
+               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                List<Course_Session> list = (List) request.getAttribute("course_sessions");
                for (Course_Session c : list)
                //List<Course_Session> list = (List) request.getAttribute("course_sessions");
@@ -96,10 +98,12 @@
                     <%= c.getCourseCode().getTitle()%>
                 </td>
                 <td>
-                    <%= c.getStartDate()%>
+                    <%  String dateSart = dateFormat.format(c.getStartDate()); %>
+                    <%= dateSart %>
                 </td>
                 <td>
-                    <%= c.getEndDate() %>
+                    <%  String dateEnd = dateFormat.format(c.getEndDate()); %>
+                    <%= dateEnd %>
                 </td>
                 <td>
                     <%= c.getLocationId().getCity()%>
@@ -124,6 +128,7 @@
           <label>Recherche sur la Description : <input type='text' id='desc'/></label><br>
           <label>Recherche sur la Date : <input type="text" id='date'/></label><br>
           <label>Recherche sur le Lieu : </label><select id='loc'>
+              <option value="null">Lieu</option>
               
               
                       <%
@@ -148,7 +153,6 @@
                 var desc = $('#desc').val();
                 var date = $('#date').val();
                 var loc = $('#loc').val();
-                console.log(desc+" "+ date+" "+loc)
                 
                 $.ajax({
                     type: "POST",
@@ -158,17 +162,15 @@
                     //dataType: "html",
                     success: function(res){
                         //alert('suceess');
-                        console.log(res);
                         $('tbody').empty();
                         if(res.val !=0 ){
                             for(var i=0; i<res.val.length; i++){
                                 $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td></tr>");
-                                console.log(res.val[i].Code);
                             }
                         }
                     },
                     error: function (data) {
-                        console.log('fail : '+data);
+                        console.log('fail');
                     }
                }); 
            }
