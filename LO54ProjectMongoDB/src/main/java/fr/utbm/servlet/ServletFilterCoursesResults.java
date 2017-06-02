@@ -83,7 +83,7 @@ public class ServletFilterCoursesResults extends HttpServlet {
            
             try (PrintWriter out = response.getWriter()) {
                 for(Course_Session c : listCourses){
-                    
+                     
                     dateSart = formatter.format(c.getStartDate());
                     dateEnd = formatter.format(c.getEndDate());
                     

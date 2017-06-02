@@ -70,10 +70,11 @@
               <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Dsecription</th>
+                <th>Description</th>
                 <th>Date début</th>
                 <th>Date fin</th>
                 <th>Lieu</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -107,6 +108,9 @@
                 </td>
                 <td>
                     <%= c.getLocationId().getCity()%>
+                </td>
+                <td>
+                    <button class="btn btn-warning subscribe" id='<%= c.getId() %>'>S'inscrire</button>
                 </td>
             </tr>   
         <%
@@ -142,6 +146,93 @@
                    
                    <%  } %>
           </select>
+          
+          
+ <!-- MODAL ADD CLIENT ============================================================ -->
+  <div class="modal fade" id="addExhibitorSuccess" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Inscription à une UV</h4>
+        </div>
+        <div class="modal-body">
+                             <form id="add-exhibitor" data-parsley-validate class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Prénom <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nom <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Adresse <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="address" name="address" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Téléphone <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="email" class="date-picker form-control col-md-7 col-xs-12" required="required" type="email">
+                        </div>
+                      </div>
+                      <input id="idCs" style="display:none" type="text">
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button class="btn btn-primary" type="reset">Réinitialiser le formulaire</button>
+                            <button id='submit' name="submit" type="submit" class="btn btn-success">S'inscrire</button>
+                        </div>
+                      </div>
+
+                    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MODAL ADD CLIENT ============================================================ -->
+  <div class="modal fade" id="addSuccess" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Succès inscription</h4>
+        </div>
+        <div class="modal-body">
+            <p>Vous avez été inscris !</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
         
         
@@ -165,9 +256,14 @@
                         $('tbody').empty();
                         if(res.val !=0 ){
                             for(var i=0; i<res.val.length; i++){
-                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td></tr>");
+                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td><td><button class='btn btn-warning subscribe' id='"+res.val[i].Id+"'>S'inscrire</button></tr>");
                             }
                         }
+                        //Subscribe client to a sessionCourse
+                        $( ".subscribe" ).click(function() {
+                            $('#addExhibitorSuccess').modal('show');
+                            $('#idCs').val(this.id);
+                        }); 
                     },
                     error: function (data) {
                         console.log('fail');
@@ -189,7 +285,38 @@
             $( "#date" ).change(function() {
                 refresh();
             });
-   
+            
+            //Subscribe client to a sessionCourse
+            $( ".subscribe" ).click(function() {
+                $('#addExhibitorSuccess').modal('show');
+                $('#idCs').val(this.id);
+            }); 
+            
+            $("#submit").click(function(event) {
+                event.preventDefault();
+                var idReq = $('#idCs').val();
+                var first_name = $('#first-name').val();
+                var last_name = $('#last-name').val();
+                var address = $('#address').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();
+                
+                
+                $.ajax({
+                    type: "POST",
+                    url: "ServletRegisterClient",
+                    data: {idReq: idReq, first_name: first_name, last_name: last_name, address: address, phone: phone, email: email},
+                    dataType:'JSON',
+                    success: function(res){
+                         $('#addSuccess').modal('show');
+                    },
+                    error: function (data) {
+
+                    }
+               }); 
+                
+                $('#addExhibitorSuccess').modal('hide');
+            });
            
        </script>    
     

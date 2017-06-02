@@ -8,6 +8,7 @@ package fr.utbm.service;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.ClientDao;
+import fr.utbm.repository.CourseSessionDao;
 
 /**
  *
@@ -15,13 +16,20 @@ import fr.utbm.repository.ClientDao;
  */
 public class RegisterService {
     
-    private ClientDao clDao = new ClientDao();
+    private ClientDao clDao;
+    private CourseSessionDao csDao;
     
-    public void registerClientToCourse(Course_Session courseSessionId, String name, String surname, String adress, Integer phone, String email)
+    public RegisterService()
     {
-        Client cl = new Client (courseSessionId, name, surname, adress, phone, email);
-        clDao.registerClientToCourseInDatabase(cl);
-        
-        
+        clDao = new ClientDao();
+        csDao = new CourseSessionDao();
+    }
+    
+    public Course_Session getCourseSessionById (Integer id) {
+        return csDao.getCourseSessionById(id);
+    }
+ 
+    public void registerClientToCourse(Client c) {
+        clDao.registerClientToCourseInDatabase(c);
     }
 }

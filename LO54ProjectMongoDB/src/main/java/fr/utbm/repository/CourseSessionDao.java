@@ -106,4 +106,30 @@ public class CourseSessionDao {
                 }
 		return courseSessions;
 	}
+        
+        public Course_Session getCourseSessionById (Integer id)
+        {
+            Course_Session courseSession = null;
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            try {
+                Query query = session.createQuery("from Course_Session where id = :id");
+                query.setParameter("id", id);
+                courseSession = (Course_Session) query.uniqueResult();
+            }
+            catch (HibernateException he) {
+                he.printStackTrace();
+            }
+            finally {
+                if (session != null)
+                    try {
+                        session.close();
+                    }
+                    catch (HibernateException he) {
+                        he.printStackTrace();
+                    }
+            }
+
+            return courseSession;
+        }
 }

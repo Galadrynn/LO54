@@ -48,8 +48,8 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Course_Session course, String lastName, String firstName, String address, Integer phone, String email) {
-        this.courseSessionId = course;
+    public Client(Course_Session courseSession, String lastName, String firstName, String address, Integer phone, String email) {
+        this.courseSessionId = courseSession;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
