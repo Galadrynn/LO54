@@ -10,7 +10,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course_Session;
-import fr.utbm.service.ListCoursesService;
 import fr.utbm.service.RegisterService;
 import org.bson.Document;
 import org.hibernate.Hibernate;

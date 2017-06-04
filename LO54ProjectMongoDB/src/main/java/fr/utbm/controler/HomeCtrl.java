@@ -13,13 +13,12 @@ import fr.utbm.service.RegisterService;
  *
  * @author Aloïs
  */
-public class SubscribePage {
+public class HomeCtrl {
 
     private RegisterService registerService;
     
-    public SubscribePage () {
+    public HomeCtrl () {
         registerService = new RegisterService();
-        
     }
     
     public void registerClient(Integer id, String lastName, String firstName, String address, Integer phone, String email) {

@@ -23,7 +23,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-            <!-- Fixed navbar -->
+    <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -52,9 +52,8 @@
         <h1>LO54</h1>
         <p>Permet la gestion des étudiants, sessions de cours, ...</p>
         <p>
-            <button type="button" class="btn btn-lg btn-primary">S'inscire à un cours</button>
-            <button type="button" class="btn btn-lg btn-success">Consulter les affectations</button>
-            <button type="button" class="btn btn-lg btn-danger">Info</button>
+            <a class='btn btn-lg btn-primary' href='./courses'>Consulter les cours</a>
+            <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
         </p>
       </div>
       
@@ -64,7 +63,7 @@
           <h1>Liste des cours sessions:</h1>
       </div>
       
-              <div class="col-md-24">
+        <div class="col-md-24">
           <table class="table">
             <thead>
               <tr>
@@ -84,8 +83,6 @@
                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                List<Course_Session> list = (List) request.getAttribute("course_sessions");
                for (Course_Session c : list)
-               //List<Course_Session> list = (List) request.getAttribute("course_sessions");
-               //for (Course_Session c : list)
                 {
         %>
             <tr>
@@ -114,9 +111,7 @@
                 </td>
             </tr>   
         <%
-
                 }
-    
         %>
                    
                
@@ -214,7 +209,7 @@
     </div>
   </div>
  
-  <!-- MODAL ADD CLIENT ============================================================ -->
+  <!-- MODAL SUCESS ADD CLIENT ============================================================ -->
   <div class="modal fade" id="addSuccess" role="dialog">
     <div class="modal-dialog">
     

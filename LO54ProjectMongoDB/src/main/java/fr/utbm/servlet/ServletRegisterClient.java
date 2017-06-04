@@ -5,7 +5,7 @@
  */
 package fr.utbm.servlet;
 
-import fr.utbm.controler.SubscribePage;
+import fr.utbm.controler.HomeCtrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -44,8 +44,8 @@ public class ServletRegisterClient extends HttpServlet {
         
         Integer phone2 = Integer.parseInt(phone); // TODO : delete this line
         
-        SubscribePage subscribePage = new SubscribePage();
-        subscribePage.registerClient(id, last_name, first_name, address, phone2, email);
+        HomeCtrl homeCtrl = new HomeCtrl();
+        homeCtrl.registerClient(id, last_name, first_name, address, phone2, email);
         
         
         // response JSON
