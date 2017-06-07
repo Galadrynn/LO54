@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "servletjsp", urlPatterns = {"/servletjsp"})
+@WebServlet(name = "servletjsp", urlPatterns = {"/"})
 public class ServletJsp extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

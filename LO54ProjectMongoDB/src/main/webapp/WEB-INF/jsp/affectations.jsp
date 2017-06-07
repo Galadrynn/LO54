@@ -19,6 +19,40 @@
     </head>
     <body>
         
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">LO54 - P17</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+                
+        <div class="container theme-showcase" role="main">
+            
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>LO54</h1>
+        <p>Permet la gestion des étudiants, sessions de cours, ...</p>
+        <p>
+            <a class='btn btn-lg btn-primary' href='./'>S'inscrire à un cours</a>
+            <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
+        </p>
+      </div>
+        
         <div class="page-header">
             <h1>Liste des affectations</h1>
         </div>
@@ -50,6 +84,7 @@
           </table>
         </div>
         
-        
+        </div>
+                
     </body>
 </html>

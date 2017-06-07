@@ -10,6 +10,8 @@
 <%@page import="fr.utbm.entity.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -58,11 +60,20 @@
       </div>
       
       
-   
-      <div class="page-header">
-          <h1>Liste des cours sessions:</h1>
-      </div>
       
+        <div class="page-header">
+            <h1>Liste des cours sessions :</h1>
+        
+            <label>Description : <input type='text' id='desc'/></label>
+            <label>Date : <input type="text" id='date'/></label>
+            <label>Lieu : </label><select id='loc'>
+                <option value="null">Lieu</option>
+                <c:forEach items="${locations}" var="l">
+                    <option value="<c:out value = "${l.getId()}"/>"><c:out value = "${l.getCity()}"/></option>
+                </c:forEach>    
+            </select>
+      </div>
+   
         <div class="col-md-24">
           <table class="table">
             <thead>
@@ -81,67 +92,38 @@
                 
         <%
                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-               List<Course_Session> list = (List) request.getAttribute("course_sessions");
-               for (Course_Session c : list)
-                {
         %>
+         <c:forEach items="${course_sessions}" var="cs">
             <tr>
                 <td>
-                    <%= c.getId() %>
+                    <c:out value = "${cs.getId()}"/>
                 </td>
                 <td>
-                    <%= c.getCourseCode().getCode()%>
+                     <c:out value = "${cs.getCourseCode().getCode()}"/>
                 </td>
                 <td>
-                    <%= c.getCourseCode().getTitle()%>
+                    <c:out value = "${cs.getCourseCode().getTitle()}"/>
                 </td>
                 <td>
-                    <%  String dateSart = dateFormat.format(c.getStartDate()); %>
-                    <%= dateSart %>
+                    <fmt:formatDate value="${cs.getStartDate()}" pattern="dd-MM-yyyy" />
                 </td>
                 <td>
-                    <%  String dateEnd = dateFormat.format(c.getEndDate()); %>
-                    <%= dateEnd %>
+                     <fmt:formatDate value="${cs.getEndDate()}" pattern="dd-MM-yyyy" />
                 </td>
                 <td>
-                    <%= c.getLocationId().getCity()%>
+                    <c:out value = "${cs.getLocationId().getCity()}"/>
                 </td>
                 <td>
-                    <button class="btn btn-warning subscribe" id='<%= c.getId() %>'>S'inscrire</button>
+                    <button class="btn btn-warning subscribe" id=' <c:out value = "${cs.getId()}"/>'>S'inscrire</button>
                 </td>
             </tr>   
-        <%
-                }
-        %>
+        </c:forEach>    
                    
                
             </tbody>
           </table>
         </div>
-      
-      
-        
-            <div class="page-header">
-              <h1>Filtrer les courses Sessions</h1>
-          </div>
-          <label>Recherche sur la Description : <input type='text' id='desc'/></label><br>
-          <label>Recherche sur la Date : <input type="text" id='date'/></label><br>
-          <label>Recherche sur le Lieu : </label><select id='loc'>
-              <option value="null">Lieu</option>
-              
-              
-                      <%
 
-               List<Location> list2 = (List) request.getAttribute("locations");
-               for (Location l : list2){
-                   %>
-              
-              
-          <option value="<%= l.getId() %>"><%= l.getCity() %></option>
-                   
-                   <%  } %>
-          </select>
-          
           
  <!-- MODAL ADD CLIENT ============================================================ -->
   <div class="modal fade" id="addExhibitorSuccess" role="dialog">

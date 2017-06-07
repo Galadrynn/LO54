@@ -49,7 +49,7 @@
         <h1>LO54</h1>
         <p>Permet la gestion des étudiants, sessions de cours, ...</p>
         <p>
-            <a class='btn btn-lg btn-primary' href='./servletjsp'>S'inscrire à un cours</a>
+            <a class='btn btn-lg btn-primary' href='./'>S'inscrire à un cours</a>
             <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
         </p>
       </div>
