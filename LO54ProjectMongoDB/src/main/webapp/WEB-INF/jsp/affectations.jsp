@@ -62,7 +62,7 @@
             <thead>
               <tr>
                 <th>Nom</th>
-                <th>Description</th>
+                <th>Prénom</th>
               </tr>
             </thead>
             <tbody>
@@ -74,7 +74,7 @@
                         <c:out value = "${item.getLastName()}"/>
                     </td>
                     <td>
-                        <c:out value = "${item.getTitle()}"/>
+                        <c:out value = "${item.getFirstName()}"/>
                     </td>
                 </tr> 
             </c:forEach>    

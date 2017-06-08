@@ -39,7 +39,7 @@ public class ServletAffectations extends HttpServlet {
         ClientCtrl clientCtrl = new ClientCtrl();
         List<Client> clientList = clientCtrl.getAllClient();
         
-        request.setAttribute("courses", clientList);
+        request.setAttribute("clientList", clientList);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/affectations.jsp" ).forward( request, response );
 
     }
