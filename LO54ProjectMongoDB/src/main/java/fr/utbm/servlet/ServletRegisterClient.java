@@ -42,10 +42,8 @@ public class ServletRegisterClient extends HttpServlet {
         
         Integer id = Integer.parseInt(idReq);
         
-        Integer phone2 = Integer.parseInt(phone); // TODO : delete this line
-        
         HomeCtrl homeCtrl = new HomeCtrl();
-        homeCtrl.registerClient(id, last_name, first_name, address, phone2, email);
+        homeCtrl.registerClient(id, last_name, first_name, address, phone, email);
         
         
         // response JSON

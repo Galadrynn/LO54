@@ -21,7 +21,7 @@ public class HomeCtrl {
         registerService = new RegisterService();
     }
     
-    public void registerClient(Integer id, String lastName, String firstName, String address, Integer phone, String email) {
+    public void registerClient(Integer id, String lastName, String firstName, String address, String phone, String email) {
         Course_Session cs = registerService.getCourseSessionById(id);
         Client c = new Client(cs, lastName, firstName, address, phone, email);
         System.out.println(c);

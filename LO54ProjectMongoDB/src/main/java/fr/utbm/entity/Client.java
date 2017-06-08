@@ -40,7 +40,7 @@ public class Client implements Serializable {
     private String address;
     
     @Column
-    private Integer phone;
+    private String phone;
     
     @Column
     private String email;
@@ -48,7 +48,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Course_Session courseSession, String lastName, String firstName, String address, Integer phone, String email) {
+    public Client(Course_Session courseSession, String lastName, String firstName, String address, String phone, String email) {
         this.courseSessionId = courseSession;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -97,11 +97,11 @@ public class Client implements Serializable {
         this.address = address;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
