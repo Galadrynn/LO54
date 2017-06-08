@@ -7,6 +7,7 @@ package fr.utbm.controler;
 
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course_Session;
+import fr.utbm.service.ConsultService;
 import fr.utbm.service.RegisterService;
 
 /**
@@ -16,15 +17,17 @@ import fr.utbm.service.RegisterService;
 public class HomeCtrl {
 
     private RegisterService registerService;
+    private ConsultService consultService;
     
     public HomeCtrl () {
         registerService = new RegisterService();
+        consultService = new ConsultService();
     }
     
     public void registerClient(Integer id, String lastName, String firstName, String address, String phone, String email) {
-        Course_Session cs = registerService.getCourseSessionById(id);
+                
+        Course_Session cs = consultService.getCourseSessionById(id);
         Client c = new Client(cs, lastName, firstName, address, phone, email);
-        System.out.println(c);
         registerService.registerClientToCourse(c);
     }
 }

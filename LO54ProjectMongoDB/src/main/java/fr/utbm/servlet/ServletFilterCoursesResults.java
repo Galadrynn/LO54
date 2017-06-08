@@ -7,6 +7,7 @@ package fr.utbm.servlet;
 
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
+import fr.utbm.service.ConsultService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -71,8 +72,8 @@ public class ServletFilterCoursesResults extends HttpServlet {
 			e.printStackTrace();
             }
 
-            CourseSessionDao courseSessionDao = new CourseSessionDao();
-            List<Course_Session> listCourses = courseSessionDao.getCourseSessionsFilter(date, locId, desc);
+            ConsultService consultServ = new ConsultService();
+            List<Course_Session> listCourses = consultServ.getCourseSessionsWithFilters(date, locId, desc);
             
             // response JSON
             response.setContentType("application/json");

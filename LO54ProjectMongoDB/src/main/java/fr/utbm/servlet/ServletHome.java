@@ -2,6 +2,8 @@ package fr.utbm.servlet;
 
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
+import fr.utbm.service.ConsultService;
+import fr.utbm.service.RegisterService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,9 +23,8 @@ public class ServletHome extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        // get allsessionCourse à l'arrache
-        CourseSessionDao test = new CourseSessionDao();
-        List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        ConsultService consultServ = new ConsultService();
+        List<Course_Session> allCourseSessions = consultServ.getAllCourseSessions();
                 
             try (PrintWriter out = response.getWriter()) {
                 out.println("<!DOCTYPE html>");
@@ -33,7 +34,7 @@ public class ServletHome extends HttpServlet {
                 out.println("</head>");
                 out.println("<body>");
                 out.println("<h1>List Sessions courses</h1>");
-                for(Course_Session cs : toto){
+                for(Course_Session cs : allCourseSessions){
                     out.println("<p>"+ cs.getCourseCode());
                     // lien avec ID
                     out.println("<a href='./description?num="+ cs.getId() +"'>Détails</a>");

@@ -10,6 +10,7 @@ import fr.utbm.entity.Location;
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import fr.utbm.repository.LocationDao;
+import fr.utbm.service.ConsultService;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -26,11 +27,11 @@ public class ServletJsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        CourseSessionDao test = new CourseSessionDao();
-        List<Course_Session> toto = test.getAllCourseSessionsFromDb();
+        ConsultService consultService = new ConsultService();
         
-        LocationDao test2 = new LocationDao();
-        List<Location> toto2 = test2.getAllLocation();
+        List<Course_Session> toto = consultService.getAllCourseSessions();
+        
+        List<Location> toto2 = consultService.getAllLocations();
         
         /*CourseSessionDao test = new CourseSessionDao();
         List<Course_Session> toto = test.getCourseSessionsFilterBy("LO54");*/

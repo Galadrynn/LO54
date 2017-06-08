@@ -38,8 +38,6 @@ public class MainApp {
         Session session = HibernateUtil.getSessionFactory().openSession();
         RegisterService registerService = new RegisterService();
         
-        Course_Session cs = registerService.getCourseSessionById(4);
-        System.out.println(cs.getId());
         
         // new Client(), "BRAVO", "Yvan", "Rue de la gare de Belfort", 607874565, "bravoyvan@gtruc.com");
         

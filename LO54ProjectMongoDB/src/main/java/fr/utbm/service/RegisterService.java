@@ -29,20 +29,9 @@ public class RegisterService {
         csDao = new CourseSessionDao();
         cDao = new CourseDao();
     }
-    
-    public Course_Session getCourseSessionById (Integer id) {
-        return csDao.getCourseSessionById(id);
-    }
  
     public void registerClientToCourse(Client c) {
         clDao.registerClientToCourseInDatabase(c);
     }
     
-    public List<Course> getAllCourses() {
-       return cDao.getAllCourseFromDb();
-    }
-    
-    public List<Client> getAllClient(){
-        return clDao.getAllClient();
-    }
 }

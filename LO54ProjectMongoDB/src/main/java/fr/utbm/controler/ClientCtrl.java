@@ -6,6 +6,7 @@
 package fr.utbm.controler;
 
 import fr.utbm.entity.Client;
+import fr.utbm.service.ConsultService;
 import fr.utbm.service.RegisterService;
 import java.util.List;
 
@@ -14,13 +15,13 @@ import java.util.List;
  * @author Moi
  */
 public class ClientCtrl {
-    private RegisterService registerService;
+    private ConsultService consultService;
         
     public ClientCtrl () {
-        registerService = new RegisterService();
+        consultService = new ConsultService();
     }
     
     public List<Client> getAllClient(){
-       return registerService.getAllClient();
+       return consultService.getAllClients();
     }
 }

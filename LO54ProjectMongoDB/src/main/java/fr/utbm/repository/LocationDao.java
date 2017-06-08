@@ -20,11 +20,10 @@ import org.hibernate.Query;
  */
 public class LocationDao {
     
-     private Session session;
+    private Session session;
 
-    public List<Location> getAllLocation() {
+    public List<Location> getAllLocations() {
     
-        
         List<Location> locationList = null;
 
         session = HibernateUtil.getSessionFactory().openSession();

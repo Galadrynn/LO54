@@ -6,6 +6,7 @@
 package fr.utbm.controler;
 
 import fr.utbm.entity.Course;
+import fr.utbm.service.ConsultService;
 import fr.utbm.service.RegisterService;
 import java.util.List;
 
@@ -14,13 +15,14 @@ import java.util.List;
  * @author Aloïs
  */
 public class CoursesCtrl {
-        private RegisterService registerService;
+    
+    private ConsultService consultService;
     
     public CoursesCtrl () {
-        registerService = new RegisterService();
+        consultService = new ConsultService();
     }
     
     public List<Course> getAllCourses(){
-       return registerService.getAllCourses();
+       return consultService.getAllCourses();
     }
 }

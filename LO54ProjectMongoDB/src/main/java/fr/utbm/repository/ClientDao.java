@@ -48,7 +48,7 @@ public class ClientDao {
         }
     }
     
-        public List<Client> getAllClient() {
+    public List<Client> getAllClient() {
             
         List<Client> clientList = null;
         
