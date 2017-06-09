@@ -6,6 +6,7 @@
 package fr.utbm.servlet;
 
 
+import fr.utbm.controler.ConsultController;
 import fr.utbm.entity.Location;
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
@@ -27,11 +28,11 @@ public class ServletJsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ConsultService consultService = new ConsultService();
+        ConsultController consultCtrl = new ConsultController();
         
-        List<Course_Session> toto = consultService.getAllCourseSessions();
+        List<Course_Session> toto = consultCtrl.getAllCourseSessions();
         
-        List<Location> toto2 = consultService.getAllLocations();
+        List<Location> toto2 = consultCtrl.getAllLocations();
         
         /*CourseSessionDao test = new CourseSessionDao();
         List<Course_Session> toto = test.getCourseSessionsFilterBy("LO54");*/

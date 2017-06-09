@@ -5,7 +5,7 @@
  */
 package fr.utbm.servlet;
 
-import fr.utbm.controler.ClientCtrl;
+import fr.utbm.controler.ConsultController;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course;
 import java.io.IOException;
@@ -36,8 +36,8 @@ public class ServletAffectations extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ClientCtrl clientCtrl = new ClientCtrl();
-        List<Client> clientList = clientCtrl.getAllClient();
+        ConsultController consultCtrl = new ConsultController();
+        List<Client> clientList = consultCtrl.getAllClient();
         
         request.setAttribute("clientList", clientList);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/affectations.jsp" ).forward( request, response );

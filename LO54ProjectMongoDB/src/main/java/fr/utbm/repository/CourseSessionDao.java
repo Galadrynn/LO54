@@ -70,7 +70,7 @@ public class CourseSessionDao {
 			session.beginTransaction();
 			
                 Criteria criteria = session.createCriteria(Course_Session.class,"cs");
-                criteria.createCriteria("courseCode","c").add(Restrictions.like("c.title", title, MatchMode.ANYWHERE));
+                criteria.createCriteria("courseCode","c").add(Restrictions.like("c.title", title, MatchMode.ANYWHERE).ignoreCase());
                 if (date != null) {
 	            criteria.add(Restrictions.le("cs.startDate", date));
 	            criteria.add(Restrictions.ge("cs.endDate", date));

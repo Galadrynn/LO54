@@ -31,13 +31,6 @@
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" href="#">LO54 - P17</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -50,7 +43,8 @@
         <p>Permet la gestion des étudiants, sessions de cours, ...</p>
         <p>
             <a class='btn btn-lg btn-primary' href='./'>S'inscrire à un cours</a>
-            <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
+            <a class='btn btn-lg btn-success' href='./courses'>Consulter les cours</a>
+            <a class='btn btn-lg btn-info' href='./affectations'>Consulter les affectations</a>
         </p>
       </div>
 
@@ -59,7 +53,7 @@
         </div>
         
           <div class="col-md-24">
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th>Code</th>
@@ -88,9 +82,7 @@
             </tbody>
           </table>
         </div>
-        
-        
-        
       </div>
+       
     </body>
 </html>

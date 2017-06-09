@@ -5,10 +5,50 @@
  */
 package fr.utbm.repository;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import fr.utbm.entity.Client;
+import org.bson.Document;
+
 /**
  *
  * @author Aloïs
  */
 public class MongoDBDao {
     
+    public void subscribeClientToCourseSession(Client cl) {
+
+        try{
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
+
+            MongoDatabase db;
+            db = mongoClient.getDatabase("SCHOOL");
+            
+            MongoCollection<Document> collection = db.getCollection("CLIENTS");
+            
+            Document doc = new Document();
+            doc.put("lastName", cl.getLastName());
+            doc.put("firstName", cl.getFirstName());
+            doc.put("address", cl.getAddress());
+            doc.put("phone", cl.getPhone());
+            doc.put("email", cl.getEmail());
+            doc.put("courseSessionId", cl.getCourseSessionId().getId());
+            
+            collection.insertOne(doc);
+            
+        } catch(Exception e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+    }
 }

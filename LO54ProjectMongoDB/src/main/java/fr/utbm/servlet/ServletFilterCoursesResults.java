@@ -5,6 +5,7 @@
  */
 package fr.utbm.servlet;
 
+import fr.utbm.controler.ConsultController;
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import fr.utbm.service.ConsultService;
@@ -72,8 +73,8 @@ public class ServletFilterCoursesResults extends HttpServlet {
 			e.printStackTrace();
             }
 
-            ConsultService consultServ = new ConsultService();
-            List<Course_Session> listCourses = consultServ.getCourseSessionsWithFilters(date, locId, desc);
+            ConsultController consultCtrl = new ConsultController();
+            List<Course_Session> listCourses = consultCtrl.getCourseSessionsWithFilters(date, locId, desc);
             
             // response JSON
             response.setContentType("application/json");

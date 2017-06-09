@@ -4,12 +4,6 @@
     Author     : Moi
 --%>
 
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="fr.utbm.entity.Course"%>
-<%@page import="fr.utbm.entity.Course_Session"%>
-<%@page import="fr.utbm.entity.Location"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Map"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,7 +16,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>JSP Page</title>
+        <title>Inscriptions aux UV</title>
+        <link rel="shortcut icon" href="http://www.utbm.fr/sites/default/files/utbm_favicon.ico" type="image/x-icon" />
+        
     </head>
     <body>
     <!-- Fixed navbar -->
@@ -36,13 +32,6 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">LO54 - P17</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -54,8 +43,9 @@
         <h1>LO54</h1>
         <p>Permet la gestion des étudiants, sessions de cours, ...</p>
         <p>
-            <a class='btn btn-lg btn-primary' href='./courses'>Consulter les cours</a>
-            <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
+            <a class='btn btn-lg btn-primary' href='./'>S'inscrire à un cours</a>
+            <a class='btn btn-lg btn-success' href='./courses'>Consulter les cours</a>
+            <a class='btn btn-lg btn-info' href='./affectations'>Consulter les affectations</a>
         </p>
       </div>
       
@@ -75,10 +65,9 @@
       </div>
    
         <div class="col-md-24">
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Date début</th>
@@ -90,14 +79,9 @@
             <tbody>
                 
                 
-        <%
-               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        %>
+
          <c:forEach items="${course_sessions}" var="cs">
             <tr>
-                <td>
-                    <c:out value = "${cs.getId()}"/>
-                </td>
                 <td>
                      <c:out value = "${cs.getCourseCode().getCode()}"/>
                 </td>
@@ -233,7 +217,7 @@
                         $('tbody').empty();
                         if(res.val !=0 ){
                             for(var i=0; i<res.val.length; i++){
-                                $("tbody").append("<tr><td>"+res.val[i].Id+"</td><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td><td><button class='btn btn-warning subscribe' id='"+res.val[i].Id+"'>S'inscrire</button></tr>");
+                                $("tbody").append("<tr><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td><td><button class='btn btn-warning subscribe' id='"+res.val[i].Id+"'>S'inscrire</button></tr>");
                             }
                         }
                         //Subscribe client to a sessionCourse

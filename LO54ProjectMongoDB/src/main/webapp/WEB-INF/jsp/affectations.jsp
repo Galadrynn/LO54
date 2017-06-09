@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,13 +32,6 @@
                 <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" href="#">LO54 - P17</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
@@ -49,7 +44,8 @@
         <p>Permet la gestion des étudiants, sessions de cours, ...</p>
         <p>
             <a class='btn btn-lg btn-primary' href='./'>S'inscrire à un cours</a>
-            <a class='btn btn-lg btn-success' href='./affectations'>Consulter les affectations</a>
+            <a class='btn btn-lg btn-success' href='./courses'>Consulter les cours</a>
+            <a class='btn btn-lg btn-info' href='./affectations'>Consulter les affectations</a>
         </p>
       </div>
         
@@ -58,23 +54,38 @@
         </div>
         
           <div class="col-md-24">
-          <table class="table">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Date début</th>
+                <th>Date fin</th>
+                <th>Site</th>
+                <th>Code UV</th>
               </tr>
             </thead>
             <tbody>
                 
-            <c:forEach items="${clientList}" var="item">
-              
+            <c:forEach items="${clientList}" var="client">
                 <tr>
                     <td>
-                        <c:out value = "${item.getLastName()}"/>
+                        <c:out value = "${client.getLastName()}"/>
                     </td>
                     <td>
-                        <c:out value = "${item.getFirstName()}"/>
+                        <c:out value = "${client.getFirstName()}"/>
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${client.getCourseSessionId().getStartDate()}" pattern="dd-MM-yyyy" />
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${client.getCourseSessionId().getEndDate()}" pattern="dd-MM-yyyy" />
+                    </td>
+                    <td>
+                        <c:out value = "${client.getCourseSessionId().getLocationId().getCity()}"/>
+                    </td>
+                    <td>
+                        <c:out value = "${client.getCourseSessionId().getCourseCode().getCode()}"/>
                     </td>
                 </tr> 
             </c:forEach>    

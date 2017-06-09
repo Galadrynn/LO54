@@ -1,5 +1,6 @@
 package fr.utbm.servlet;
 
+import fr.utbm.controler.ConsultController;
 import fr.utbm.entity.Course_Session;
 import fr.utbm.repository.CourseSessionDao;
 import fr.utbm.service.ConsultService;
@@ -23,8 +24,8 @@ public class ServletHome extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        ConsultService consultServ = new ConsultService();
-        List<Course_Session> allCourseSessions = consultServ.getAllCourseSessions();
+        ConsultController consultCtrl = new ConsultController();
+        List<Course_Session> allCourseSessions = consultCtrl.getAllCourseSessions();
                 
             try (PrintWriter out = response.getWriter()) {
                 out.println("<!DOCTYPE html>");

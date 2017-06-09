@@ -14,18 +14,17 @@ import fr.utbm.service.RegisterService;
  *
  * @author Aloïs
  */
-public class HomeCtrl {
+public class RegisterController {
 
     private RegisterService registerService;
     private ConsultService consultService;
     
-    public HomeCtrl () {
+    public RegisterController () {
         registerService = new RegisterService();
         consultService = new ConsultService();
     }
     
     public void registerClient(Integer id, String lastName, String firstName, String address, String phone, String email) {
-                
         Course_Session cs = consultService.getCourseSessionById(id);
         Client c = new Client(cs, lastName, firstName, address, phone, email);
         registerService.registerClientToCourse(c);

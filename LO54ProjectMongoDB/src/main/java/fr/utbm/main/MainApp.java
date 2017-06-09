@@ -10,6 +10,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import fr.utbm.entity.Client;
 import fr.utbm.entity.Course_Session;
+import fr.utbm.repository.ClientDao;
+import fr.utbm.repository.MongoDBDao;
 import fr.utbm.service.RegisterService;
 import org.bson.Document;
 import org.hibernate.Hibernate;
@@ -35,9 +37,13 @@ public class MainApp {
             
             
         
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        RegisterService registerService = new RegisterService();
+        //Session session = HibernateUtil.getSessionFactory().openSession();
+        //RegisterService registerService = new RegisterService();
         
+        MongoDBDao mongo = new MongoDBDao();
+        ClientDao client = new ClientDao();
+        List<Client> tata = client.getAllClient();
+        mongo.subscribeClientToCourseSession(tata.get(0));
         
         // new Client(), "BRAVO", "Yvan", "Rue de la gare de Belfort", 607874565, "bravoyvan@gtruc.com");
         

@@ -5,7 +5,7 @@
  */
 package fr.utbm.servlet;
 
-import fr.utbm.controler.HomeCtrl;
+import fr.utbm.controler.RegisterController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,8 +42,8 @@ public class ServletRegisterClient extends HttpServlet {
         
         Integer id = Integer.parseInt(idReq);
         
-        HomeCtrl homeCtrl = new HomeCtrl();
-        homeCtrl.registerClient(id, last_name, first_name, address, phone, email);
+        RegisterController regCtrl = new RegisterController();
+        regCtrl.registerClient(id, last_name, first_name, address, phone, email);
         
         
         // response JSON

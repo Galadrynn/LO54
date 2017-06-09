@@ -5,10 +5,9 @@
  */
 package fr.utbm.servlet;
 
-import fr.utbm.controler.CoursesCtrl;
+import fr.utbm.controler.ConsultController;
 import fr.utbm.entity.Course;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,8 +34,8 @@ public class ServletCourses extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        CoursesCtrl courseCtrl = new CoursesCtrl();
-        List<Course> t = courseCtrl.getAllCourses();
+        ConsultController consultCtrl = new ConsultController();
+        List<Course> t = consultCtrl.getAllCourses();
         
         request.setAttribute("courses", t);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/courses.jsp" ).forward( request, response );
