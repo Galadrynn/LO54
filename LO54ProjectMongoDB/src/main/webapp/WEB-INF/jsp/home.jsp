@@ -114,7 +114,7 @@
                     <c:out value = "${cs.getLocationId().getCity()}"/>
                 </td>
                 <td>
-                    <button class="btn btn-warning subscribe" id=' <c:out value = "${cs.getId()}"/>'>S'inscrire</button>
+                    <button class="btn btn-warning subscribe" id='<c:out value = "${cs.getId()}"/>'>S'inscrire</button>
                 </td>
             </tr>   
         </c:forEach>    
