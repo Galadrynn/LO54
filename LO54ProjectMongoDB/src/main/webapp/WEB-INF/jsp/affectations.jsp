@@ -96,6 +96,12 @@
         </div>
         
         </div>
+        
+               <style>
+           td {
+               vertical-align: middle !important; 
+           }
+       </style>
                 
     </body>
 </html>

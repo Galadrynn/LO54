@@ -73,7 +73,9 @@
                         <c:out value = "${item.getTitle()}"/>
                     </td>
                     <td>
-                         <button class="btn btn-warning" >Voir les sessions</button>
+                        <form action="./" method="post">
+                            <button name="button" class="btn btn-warning" type="submit" value="${item.getTitle()}" >Voir les sessions</button>
+                        </form>
                     </td>
                 </tr> 
             </c:forEach>    
@@ -81,8 +83,14 @@
  
             </tbody>
           </table>
-        </div>
+        </div>    
       </div>
        
+        <style>
+           td {
+               vertical-align: middle !important; 
+           }
+       </style>
+        
     </body>
 </html>

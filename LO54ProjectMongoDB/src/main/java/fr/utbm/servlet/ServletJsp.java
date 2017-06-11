@@ -29,27 +29,15 @@ public class ServletJsp extends HttpServlet {
             throws ServletException, IOException {
         
         ConsultController consultCtrl = new ConsultController();
-        
         List<Course_Session> toto = consultCtrl.getAllCourseSessions();
-        
         List<Location> toto2 = consultCtrl.getAllLocations();
         
-        /*CourseSessionDao test = new CourseSessionDao();
-        List<Course_Session> toto = test.getCourseSessionsFilterBy("LO54");*/
-       
-       
-        /*CourseDao test = new CourseDao();
-        List<Course> toto = test.getAllCourseFromDb();
-        System.out.println("efeaf " + toto.size());*/
-       
-        Map<String, String> map = new HashMap<String, String>();
-        /*map.put("test","test");
-        map.put("oui","oui");*/
-        
-        //map.put("course_sessions", toto);
+        request.setCharacterEncoding("UTF-8");
+        String button = request.getParameter("button");
         
         request.setAttribute("course_sessions", toto);
         request.setAttribute("locations", toto2);
+        request.setAttribute("button", button);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/home.jsp" ).forward( request, response );
     }
 

@@ -52,11 +52,11 @@
       
       
         <div class="page-header">
-            <h1>Liste des cours sessions :</h1>
+            <h1>Liste des sessions :</h1>
         
-            <label>Description : <input type='text' id='desc'/></label>
-            <label>Date : <input type="text" id='date'/></label>
-            <label>Lieu : </label><select id='loc'>
+            <label><input placeholder='Description' value="${button}" type='text' id='desc' class='register-input'/></label>
+            <label><input placeholder='Date' type="text" id='date' class='register-input' /></label>
+            <label></label><select id='loc'>
                 <option value="null">Lieu</option>
                 <c:forEach items="${locations}" var="l">
                     <option value="<c:out value = "${l.getId()}"/>"><c:out value = "${l.getCity()}"/></option>
@@ -120,7 +120,7 @@
           <h4 class="modal-title">Inscription à une UV</h4>
         </div>
         <div class="modal-body">
-                             <form id="add-exhibitor" data-parsley-validate class="form-horizontal form-label-left">
+                             <form id="add-client" data-parsley-validate class="form-horizontal form-label-left">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Prénom <span class="required">*</span>
@@ -161,7 +161,7 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button class="btn btn-primary" type="reset">Réinitialiser le formulaire</button>
+                            <button class="btn btn-primary" type="reset">Réinitialiser</button>
                             <button id='submit' name="submit" type="submit" class="btn btn-success">S'inscrire</button>
                         </div>
                       </div>
@@ -199,6 +199,10 @@
         
        <script type="text/javascript">
            
+           if (desc = $('#desc').val() !== "") {
+               refresh();
+           }
+           
            $( "#date" ).datepicker({dateFormat: 'dd-mm-yy'});
            
            function refresh(){
@@ -215,12 +219,12 @@
                     success: function(res){
                         //alert('suceess');
                         $('tbody').empty();
-                        if(res.val !=0 ){
+                        if(res.val !== 0 ){
                             for(var i=0; i<res.val.length; i++){
                                 $("tbody").append("<tr><td>"+res.val[i].Code+"</td><td>"+res.val[i].Desc+"</td><td>"+res.val[i].StartDate+"</td><td>"+res.val[i].EndDate+"</td><td>"+res.val[i].Location+"</td><td><button class='btn btn-warning subscribe' id='"+res.val[i].Id+"'>S'inscrire</button></tr>");
                             }
                         }
-                        //Subscribe client to a sessionCourse
+                        //Add hanler listener 
                         $( ".subscribe" ).click(function() {
                             $('#addExhibitorSuccess').modal('show');
                             $('#idCs').val(this.id);
@@ -247,40 +251,72 @@
                 refresh();
             });
             
-            //Subscribe client to a sessionCourse
+            //Open modal window
             $( ".subscribe" ).click(function() {
                 $('#addExhibitorSuccess').modal('show');
                 $('#idCs').val(this.id);
             }); 
             
+            
+            // Add hanler listener
             $("#submit").click(function(event) {
+                
                 event.preventDefault();
+                
                 var idReq = $('#idCs').val();
                 var first_name = $('#first-name').val();
                 var last_name = $('#last-name').val();
                 var address = $('#address').val();
                 var phone = $('#phone').val();
                 var email = $('#email').val();
-                
-                
-                $.ajax({
-                    type: "POST",
-                    url: "ServletRegisterClient",
-                    data: {idReq: idReq, first_name: first_name, last_name: last_name, address: address, phone: phone, email: email},
-                    dataType:'JSON',
-                    success: function(res){
-                         $('#addSuccess').modal('show');
-                    },
-                    error: function (data) {
 
-                    }
-               }); 
+                if(first_name !== "" && last_name !== "" && address !== "" && phone !== "" && email !=="" ){
+
+                    $.ajax({
+                        type: "POST",
+                        url: "ServletRegisterClient",
+                        data: {idReq: idReq, first_name: first_name, last_name: last_name, address: address, phone: phone, email: email},
+                        dataType:'JSON',
+                        success: function(res){
+                             $('#addSuccess').modal('show');
+                        },
+                        error: function (data) {
+
+                        }
+                   }); 
+                    $('#addExhibitorSuccess').modal('hide');
+                }else{
+                    alert("Certains champs sont vides !");
+                }
                 
-                $('#addExhibitorSuccess').modal('hide');
+                
             });
            
        </script>    
     
+       
+       <style>
+           td {
+               vertical-align: middle !important; 
+           }
+                      
+           .register-input {
+                display: block;
+                width: 100%;
+                height: 38px;
+                margin-top: 2px;
+                font-weight: 500;
+                background: none;
+                border: 0;
+                border-bottom: 1px solid #d8d8d8;
+            }
+            
+            .register-input:focus {
+                border-color: #1e9ce6;
+                outline: 0;
+              }
+
+       </style>
         
     </div>
         
