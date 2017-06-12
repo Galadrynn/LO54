@@ -19,8 +19,10 @@ public class MongoDBDao {
     
     public void subscribeClientToCourseSession(Client cl) {
 
+        MongoClient mongoClient = null;
+        
         try{
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            mongoClient = new MongoClient("localhost", 27017);
 
             MongoDatabase db;
             db = mongoClient.getDatabase("SCHOOL");
@@ -39,6 +41,8 @@ public class MongoDBDao {
             
         } catch(Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } finally {
+            mongoClient.close();
         }
     }
 }

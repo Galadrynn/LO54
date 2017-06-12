@@ -29,14 +29,14 @@ public class ServletJsp extends HttpServlet {
             throws ServletException, IOException {
         
         ConsultController consultCtrl = new ConsultController();
-        List<Course_Session> toto = consultCtrl.getAllCourseSessions();
-        List<Location> toto2 = consultCtrl.getAllLocations();
+        List<Course_Session> listCourses = consultCtrl.getAllCourseSessions();
+        List<Location> listLocations = consultCtrl.getAllLocations();
         
         request.setCharacterEncoding("UTF-8");
         String button = request.getParameter("button");
         
-        request.setAttribute("course_sessions", toto);
-        request.setAttribute("locations", toto2);
+        request.setAttribute("course_sessions", listCourses);
+        request.setAttribute("locations", listLocations);
         request.setAttribute("button", button);
         this.getServletContext().getRequestDispatcher( "/WEB-INF/jsp/home.jsp" ).forward( request, response );
     }

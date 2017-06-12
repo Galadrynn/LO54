@@ -17,7 +17,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Inscriptions aux UV</title>
-        <link rel="shortcut icon" href="http://www.utbm.fr/sites/default/files/utbm_favicon.ico" type="image/x-icon" />
+  <!--    <link rel="shortcut icon" href="http://www.utbm.fr/sites/default/files/utbm_favicon.ico" type="image/x-icon" /> -->
         
     </head>
     <body>

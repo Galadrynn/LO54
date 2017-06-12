@@ -42,8 +42,8 @@ public class MainApp {
         
         MongoDBDao mongo = new MongoDBDao();
         ClientDao client = new ClientDao();
-        List<Client> tata = client.getAllClient();
-        mongo.subscribeClientToCourseSession(tata.get(0));
+        List<Client> listClients = client.getAllClient();
+        mongo.subscribeClientToCourseSession(listClients.get(0));
         
         // new Client(), "BRAVO", "Yvan", "Rue de la gare de Belfort", 607874565, "bravoyvan@gtruc.com");
         
