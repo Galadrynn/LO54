@@ -301,7 +301,6 @@
            }
                       
            .register-input {
-                display: block;
                 width: 100%;
                 height: 38px;
                 margin-top: 2px;
