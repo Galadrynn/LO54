@@ -299,6 +299,11 @@
            td {
                vertical-align: middle !important; 
            }
+           
+           #loc {
+               padding-bottom: 10px;
+               padding-top: 10px;
+           }
                       
            .register-input {
                 width: 100%;
